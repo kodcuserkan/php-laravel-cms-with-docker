@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
+
+const TYPES_LIST_ENDPOINT = '/console/types/list';
+
 class TypesController extends Controller
 {
     public function list()
@@ -17,7 +20,7 @@ class TypesController extends Controller
     public function delete(Type $type)
     {
         $type->delete();
-        return redirect('/console/types/list')
+        return redirect(TYPES_LIST_ENDPOINT)
             ->with('success', "Type '$type->title' has been deleted.");
     }
 
@@ -36,7 +39,7 @@ class TypesController extends Controller
         $type->title = $request->input('title');
         $type->save();
 
-        return redirect('/console/types/list')
+        return redirect(TYPES_LIST_ENDPOINT)
             ->with('success', "Type '$type->title' has been created.");
     }
 
@@ -56,7 +59,7 @@ class TypesController extends Controller
         $type->title = $request->input('title');
         $type->save();
 
-        return redirect('/console/types/list')
+        return redirect(TYPES_LIST_ENDPOINT)
             ->with('success', "Type '$type->title' has been updated.");
     }
 }
